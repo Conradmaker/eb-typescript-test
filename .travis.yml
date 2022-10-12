@@ -12,10 +12,12 @@ script:
 
 after_success:
   - docker build -t conradmaker/typescript-docker -f ./Dockerfile ./
+  - docker build -t conradmaker/typescript-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
   - docker push conradmaker/typescript-docker
+  - docker push conradmaker/typescript-nginx
 
 deploy:
   provider: elasticbeanstalk
