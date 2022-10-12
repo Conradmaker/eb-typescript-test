@@ -1,0 +1,15 @@
+version: "3"
+services:
+  server:
+    # container_name: app_server4
+    build: 
+      dockerfile: Dockerfile
+      context: ./
+    # volumes:
+      # - /usr/app/node_modules
+      # - /app/build
+      # - ./:/usr/app/
+    ports:
+      - "5000:8080"
+    environment:
+      PORT: 8080

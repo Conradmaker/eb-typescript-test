@@ -1,0 +1,31 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t conradmaker/node-test -f ./Dockerfile.dev ./
+script:
+  - docker run -e CI=true conradmaker/node-test yarn test
+
+after_success:
+  - docker build -t conradmaker/tyscript-docker -f ./Dockerfile ./
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+
+  - docker push conradmaker/tyscript-docker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "test"
+  env: "Test-env"
+  bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
+  bucket_path: "test-app"
+  on:
+    branch: master
+  
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
