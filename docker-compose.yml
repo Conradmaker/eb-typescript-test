@@ -2,9 +2,10 @@ version: "3"
 services:
   server:
     # container_name: app_server4
-    build: 
-      dockerfile: Dockerfile
-      context: ./
+    # build: 
+    #   dockerfile: Dockerfile
+    #   context: ./
+    image: conradmaker/typescript-docker
     # volumes:
       # - /usr/app/node_modules
       # - /app/build

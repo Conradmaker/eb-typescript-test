@@ -11,11 +11,11 @@ script:
   - docker run -e CI=true conradmaker/node-test yarn test
 
 after_success:
-  - docker build -t conradmaker/tyscript-docker -f ./Dockerfile ./
+  - docker build -t conradmaker/typescript-docker -f ./Dockerfile ./
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push conradmaker/tyscript-docker
+  - docker push conradmaker/typescript-docker
 
 deploy:
   provider: elasticbeanstalk
