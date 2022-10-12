@@ -8,18 +8,19 @@ COPY ./tsconfig.json ./
 
 COPY ./src ./src
 ENV NODE_ENV production
-RUN yarn install --frozen-lockfile && yarn build
+RUN yarn install --frozen-lockfile --production && yarn build
 
 
 # Production stage.
 FROM node:16-alpine
 WORKDIR /app
 ENV NODE_ENV=production
+ENV PORT=8080
 COPY package.json ./
 COPY ./yarn.lock ./
 RUN yarn install --frozen-lockfile --production
-RUN ls -a
 COPY --from=builder /usr/src/app/build ./build
+RUN ls -a
 
 RUN yarn global add pm2
 COPY ./ecosystem.config.js ./

@@ -22,10 +22,10 @@ deploy:
   region: "ap-northeast-2"
   app: "test"
   env: "Test-env"
-  bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
+  bucket_name: "elasticbeanstalk-ap-northeast-2-840838586021"
   bucket_path: "test-app"
   on:
     branch: master
-  
+
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
