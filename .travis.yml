@@ -22,10 +22,10 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: "ap-northeast-2"
-  app: "test"
-  env: "Test-env"
+  app: "test-be"
+  env: "Testbe-env"
   bucket_name: "elasticbeanstalk-ap-northeast-2-840838586021"
-  bucket_path: "test-app"
+  bucket_path: "testbe-app"
   on:
     branch: master
 

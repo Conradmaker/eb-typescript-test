@@ -10,6 +10,7 @@ services:
     #   - "5000:8080"
     environment:
       PORT: 8080
+      
   nginx: 
     restart: always
     image: conradmaker/typescript-nginx
